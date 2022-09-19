@@ -53,5 +53,8 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::get('two-factor/resent',[TwoFactorController::class,'resent'])->name('auth.two.factor.resent');
 });
 
+
 Route::get('topic/new',[TopicController::class,'new'])->name('topic.new');
 Route::post('topic',[TopicController::class,'store'])->name('topic.store');
+Route::get('topics',[TopicController::class,'index'])->name('topics');
+Route::get('topic/{topic}',[TopicController::class,'show'])->name('topic.show');
