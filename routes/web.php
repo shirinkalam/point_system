@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TopicController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,3 +59,4 @@ Route::get('topic/new',[TopicController::class,'new'])->name('topic.new');
 Route::post('topic',[TopicController::class,'store'])->name('topic.store');
 Route::get('topics',[TopicController::class,'index'])->name('topics');
 Route::get('topic/{topic}',[TopicController::class,'show'])->name('topic.show');
+Route::post('topic/{topic}/reply',[ReplyController::class,'store'])->name('reply.store');

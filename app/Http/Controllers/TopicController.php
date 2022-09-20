@@ -19,9 +19,9 @@ class TopicController extends Controller
 
     public function store(Request $request)
     {
-        auth()->user()->topics()->create($request->all());
+        $topic = auth()->user()->topics()->create($request->all());
 
-        return back();
+        return redirect()->route('topic.show',$topic);
     }
 
     public function index()

@@ -14,7 +14,7 @@
         @include('partials.alerts')
     </div>
 
-  <form action="{{route('topic.store')}}" method="POST">
+  <form action="{{route('reply.store',$topic->id)}}" method="POST">
     @csrf
 
     <fieldset>
@@ -30,10 +30,17 @@
     </fieldset>
 
     <fieldset>
-        <label for="reply">@lang('topics.reply'):</label>
-        <p>سه روز پیش توسط من</p>
-        <input type="text" id="text" name="reply">
 
+        @foreach ($topic->replies as $reply)
+            <div>
+                <h3>{{$reply->text}}</h3>
+            </div>
+            <div>
+                <p>ارسال شده توسط {{$reply->user->name}} در {{$reply->created_at}}</p>
+            </div>
+        @endforeach
+
+        <input type="text" id="text" name="text">
     </fieldset>
 
     <div class="">
