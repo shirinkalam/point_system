@@ -10,6 +10,8 @@ class Topic extends Model
 {
     use HasFactory;
 
+    const XP = 5;
+
     protected $fillable = ['title','text'];
 
     public function user()

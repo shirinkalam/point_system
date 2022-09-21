@@ -68,4 +68,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);
     }
+
+    public function userStat()
+    {
+        return $this->hasOne(UserState::class);
+    }
+
+    public function incrementXp($number = 1)
+    {
+        $this->userStat->xp += $number;
+        $this->userStat->save();
+    }
 }
