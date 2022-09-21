@@ -79,4 +79,16 @@ class User extends Authenticatable
         $this->userStat->xp += $number;
         $this->userStat->save();
     }
+
+    public function incrementTopicCount()
+    {
+        $this->userStat->topic_count ++;
+        $this->userStat->save();
+    }
+
+    public function incrementReplyCount()
+    {
+        $this->userStat->reply_count ++;
+        $this->userStat->save();
+    }
 }
