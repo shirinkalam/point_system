@@ -10,6 +10,8 @@ class Reply extends Model
 {
     use HasFactory;
 
+    const XP = 2 ;
+
     protected $fillable = [
         'user_id',
         'text',
