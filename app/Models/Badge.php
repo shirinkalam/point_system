@@ -16,4 +16,9 @@ class Badge extends Model
         'type',
         'icon_url',
     ];
+
+    public function scopeXp($query)
+    {
+        $query->where('type',0);
+    }
 }

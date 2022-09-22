@@ -64,31 +64,37 @@ class User extends Authenticatable
         SendEmail::dispatch($this,new ResetPassword($this,$token));
     }
 
+    public function badges()
+    {
+        return $this->belongsToMany(Badge::class)->withTimestamps();
+    }
+
+    public function userState()
+    {
+        return $this->hasOne(UserState::class);
+    }
+
     public function topics()
     {
         return $this->hasMany(Topic::class);
     }
 
-    public function userStat()
-    {
-        return $this->hasOne(UserState::class);
-    }
 
     public function incrementXp($number = 1)
     {
-        $this->userStat->xp += $number;
-        $this->userStat->save();
+        $this->userState->xp += $number;
+        $this->userState->save();
     }
 
     public function incrementTopicCount()
     {
-        $this->userStat->topic_count ++;
-        $this->userStat->save();
+        $this->userState->topic_count ++;
+        $this->userState->save();
     }
 
     public function incrementReplyCount()
     {
-        $this->userStat->reply_count ++;
-        $this->userStat->save();
+        $this->userState->reply_count ++;
+        $this->userState->save();
     }
 }
