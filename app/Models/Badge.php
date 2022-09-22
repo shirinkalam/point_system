@@ -21,4 +21,14 @@ class Badge extends Model
     {
         $query->where('type',0);
     }
+
+    public function scopeTopic($query)
+    {
+        $query->where('type',1);
+    }
+
+    public function scopeReply($query)
+    {
+        $query->where('type',2);
+    }
 }
