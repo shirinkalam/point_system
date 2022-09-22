@@ -15,20 +15,10 @@ class ReplyHandler extends AbstractHandler
     }
 
 
-    private function applyBadge($userState)
+    protected function getAvailableBdges($userState)
     {
         #بج هایی که کاربر میتواند داشته باشد
-        $availableBadges = Badge::reply()->where('required_number','<=',$userState->reply_count)->get();
+        return Badge::reply()->where('required_number','<=',$userState->reply_count)->get();
 
-        #مقایسه کردن بج های بالا با بج های خود کاربر
-        $userBadges = $userState->user->badges;
-
-        $notRecievedBadge = $availableBadges->diff($userBadges);
-
-        #اگر خالی نبود
-        if($notRecievedBadge->isEmpty()) return;
-
-        #آن را برای کاربر اساین میکند
-        $userState->user->badges()->attach($notRecievedBadge);
     }
 }

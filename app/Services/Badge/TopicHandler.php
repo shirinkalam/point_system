@@ -15,21 +15,10 @@ class TopicHandler extends AbstractHandler
     }
 
 
-    private function applyBadge($userState)
+    protected function getAvailableBdges($userState)
     {
         #بج هایی که کاربر میتواند داشته باشد
-        $availableBadges = Badge::topic()->where('required_number','<=',$userState->topic_count)->get();
-
-        #مقایسه کردن بج های بالا با بج های خود کاربر
-        $userBadges = $userState->user->badges;
-
-        $notRecievedBadge = $availableBadges->diff($userBadges);
-
-        #اگر خالی نبود
-        if($notRecievedBadge->isEmpty()) return;
-
-        #آن را برای کاربر اساین میکند
-        $userState->user->badges()->attach($notRecievedBadge);
+        return Badge::topic()->where('required_number','<=',$userState->topic_count)->get();
     }
 }
 

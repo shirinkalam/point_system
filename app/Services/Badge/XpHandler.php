@@ -14,20 +14,10 @@ class XpHandler extends AbstractHandler
         return parent::handle($userState);
     }
 
-    private function applyBadge($userState)
+    protected function getAvailableBdges($userState)
     {
         #بج هایی که کاربر میتواند داشته باشد
-        $availableBadges = Badge::xp()->where('required_number','<=',$userState->xp)->get();
+        return Badge::xp()->where('required_number','<=',$userState->xp)->get();
 
-        #مقایسه کردن بج های بالا با بج های خود کاربر
-        $userBadges = $userState->user->badges;
-
-        $notRecievedBadge = $availableBadges->diff($userBadges);
-
-        #اگر خالی نبود
-        if($notRecievedBadge->isEmpty()) return;
-
-        #آن را برای کاربر اساین میکند
-        $userState->user->badges()->attach($notRecievedBadge);
     }
 }
